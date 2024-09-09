@@ -16,8 +16,23 @@ function loadModule(modulePath) {
     .then((response) => response.text())
     .then((html) => {
       document.getElementById("moduleContainer").innerHTML = html;
+
+      // Inicializa DataTables si estamos cargando el módulo de usuarios
+      if (modulePath.includes('usuarios.html')) {
+        // Inicializa después de que el contenido ha sido agregado al DOM
+        setTimeout(initializeDataTable, 100);  // Espera para asegurarse de que el DOM esté listo
+      }
     })
     .catch((err) => console.warn("Algo salió mal al cargar el módulo.", err));
+}
+
+// Función para inicializar DataTables en la tabla con ID #example
+function initializeDataTable() {
+  const dataTable = new simpleDatatables.DataTable("#example", {
+    searchable: true,
+    fixedHeight: true,
+    perPage: 5,
+  });
 }
 
 // Manejo del botón de menú hamburguesa

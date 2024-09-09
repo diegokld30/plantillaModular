@@ -1,3 +1,9 @@
+// src/assets/js/usuario.js
 document.addEventListener("DOMContentLoaded", function () {
-  const dataTable = new simpleDatatables.DataTable("#usuariosTable");
+  // Inicializa Simple DataTables en la tabla con ID #example
+  const dataTable = new simpleDatatables.DataTable("#example", {
+    searchable: true,
+    fixedHeight: true,
+    perPage: 5,
+  });
 });
